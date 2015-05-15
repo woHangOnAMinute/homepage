@@ -13,28 +13,30 @@ angular.module('wohangonaminuteApp')
 
     $scope.$on('youtube.player.ended', function ($event, player) {
       // play it again
-      $scope.playVideo(player);
+        $scope.getNextFromPlaylist();
+      player.playVideo();
     });
 
-    $http.get('https://gdata.youtube.com/feeds/api/videos/8SzFaEqbLRM?v=2').
-  success(function(data, status, headers, config) {
+
+
+    $http.get('http://gdata.youtube.com/feeds/api/videos/8SzFaEqbLRM?v=2').
+    success(function(data, status, headers, config) {
     console.log('success');
     console.log(data);
     // this callback will be called asynchronously
     // when the response is available
-  }).
-  error(function(data, status, headers, config) {
+    }).
+    error(function(data, status, headers, config) {
     console.log('ERROR');
     console.log(data);
     // called asynchronously if an error occurs
     // or server returns response with an error status.
-  });
+    });
 
 
-    $scope.playVideo = function() {
-        $scope.$apply(function () {
+    $scope.playVideo = function(player) {
+          console.log('I TRYING');
           $scope.currentVid = $scope.getNextFromPlaylist();
-        });
     };
 
     $scope.addToPlaylist = function(id) {
@@ -51,8 +53,6 @@ angular.module('wohangonaminuteApp')
         $scope.$apply(function () {
           $scope.playlist.push({userid:'1',videoId:id});
         });
-        console.log(  '$scope.playlist');
-        console.log(  $scope.playlist);
         if(  $scope.currentVid == '' )  {
           $scope.playVideo();
         }

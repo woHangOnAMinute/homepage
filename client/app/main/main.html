@@ -12,8 +12,16 @@
 </iframe> -->
  <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
  <!-- Use 'youtube-video' as an element or attribute. -->8SzFaEqbLRM
-<youtube-video video-id="currentVid" player-vars="playerVars"></youtube-video>
-{{playlist}}
+ <div style="width:100%">
+   <youtube-video video-id="currentVid" player-vars="playerVars" player="videoPlayer"></youtube-video>
+ </div>
+
+ <div   style="width:100%">
+   Now Playing: {{currentVid}}
+ </div>
+  <div ng-repeat="list in playlist" style="width:100%">
+    $index: {{list.videoId}}
+  </div>
 <input type="text" ng-model="nextVideoId">
 <button ng-click="addToPlaylist(nextVideoId)">Add</button>
 

@@ -1,30 +1,45 @@
-<div ng-include="'components/navbar/navbar.html'"></div>
+<!-- <div ng-include="'components/navbar/navbar.html'"></div> -->
 
-<header class="hero-unit" id="banner">
-  <div class="container section">
-    <span class="header-start">Test</span>
-    <span class="header-end">Title</span>
-  </div>
-</header>
+<div class="container section hero-unit">
+  <span class="header-start">WoHangOnA</span>
+  <span class="header-end">Minute</span>
+  <!-- <img src="../assets/images/clock.svg" onerror="this.onerror=null; this.src='image.png'"> -->
+<!--
+  <iframe id="ytplayer" type="text/html" width="640" height="390"
+  src="https://www.youtube.com/watch?v=R4ZHpYTd3hQ"
+  frameborder="0"/> -->
+<!-- <iframe class="hero-video" ng-src="{{currentVideoUrl}}">
+</iframe> -->
+ <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+ <!-- Use 'youtube-video' as an element or attribute. -->8SzFaEqbLRM
+<youtube-video video-id="currentVid" player-vars="playerVars"></youtube-video>
+{{playlist}}
+<input type="text" ng-model="nextVideoId">
+<button ng-click="addToPlaylist(nextVideoId)">Add</button>
+
+</div>
 
 <div class="container section">
   <span class="header-start">Shift</span>
   <span class="header-end">four</span>
 </div>
 
-<div class="container section">
-  <span class="header-start">Shift</span>
-  <span class="header-end">twelve</span>
-</div>
-
-<div class="container section">
-  <span class="header-start">Shift</span>
-  <span class="header-end">twelve</span>
-</div>
-
-<div class="container section">
+<div class="container section inverse-section">
   <span class="header-start">Roll</span>
   <span class="header-end">on</span>
+</div>
+
+<div class="container section">
+  <span class="header-start">Shift</span>
+  <span class="header-end">12</span>
+</div>
+
+<div class="container section inverse-section">
+  <span class="header-start">Slopes</span>
+</div>
+
+<div class="container section">
+  <span class="header-start">Eis</span>
 </div>
 
 <footer class="footer">
@@ -34,44 +49,49 @@
 </footer>
 <script>
 console.log('WAT');
-// // left: 37, up: 38, right: 39, down: 40,
-// // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-// var keys = [37, 38, 39, 40];
-//
-// function preventDefault(e) {
-//   e = e || window.event;
-//   if (e.preventDefault)
-//       e.preventDefault();
-//   e.returnValue = false;
-// }
-//
-// function keydown(e) {
-//     for (var i = keys.length; i--;) {
-//         if (e.keyCode === keys[i]) {
-//             preventDefault(e);
-//             return;
-//         }
-//     }
-// }
-//
-// function wheel(e) {
-//   preventDefault(e);
-//   console.log(e);
-// }
-//
-// function disable_scroll() {
-//   if (window.addEventListener) {
-//       window.addEventListener('DOMMouseScroll', wheel, false);
-//   }
-//   window.onmousewheel = document.onmousewheel = wheel;
-//   document.onkeydown = keydown;
-// }
-//
-// function enable_scroll() {
-//     if (window.removeEventListener) {
-//         window.removeEventListener('DOMMouseScroll', wheel, false);
-//     }
-//     window.onmousewheel = document.onmousewheel = document.onkeydown = null;
-// }
-//
+// left: 37, up: 38, right: 39, down: 40,
+// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+var keys = [37, 38, 39, 40];
+var scrollDistance = 0;
+function preventDefault(e) {
+  e = e || window.event;
+  if (e.preventDefault)
+      e.preventDefault();
+  e.returnValue = false;
+}
+
+function keydown(e) {
+    for (var i = keys.length; i--;) {
+        if (e.keyCode === keys[i]) {
+            preventDefault(e);
+            return;
+        }
+    }
+}
+
+function wheel(e) {
+  preventDefault(e);
+  scrollDistance += e.wheelDeltaY;
+  console.log(scrollDistance);
+  if(scrollDistance<-20000){
+    enable_scroll();
+  }
+}
+
+function disable_scroll() {
+  if (window.addEventListener) {
+      window.addEventListener('DOMMouseScroll', wheel, false);
+  }
+  window.onmousewheel = document.onmousewheel = wheel;
+  document.onkeydown = keydown;
+}
+
+function enable_scroll() {
+    if (window.removeEventListener) {
+        window.removeEventListener('DOMMouseScroll', wheel, false);
+    }
+    window.onmousewheel = document.onmousewheel = document.onkeydown = null;
+}
+// disable_scroll();
+
 </script>

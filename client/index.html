@@ -40,6 +40,10 @@
       ga('send', 'pageview');
     </script>
 
+    <script src="https://cdn.socket.io/socket.io-1.0.6.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="angular-youtube-embed.js"></script>
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -54,6 +58,8 @@
       <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
+      <script src="bower_components/angular-socket-io/socket.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
@@ -66,5 +72,25 @@
           <script src="components/navbar/navbar.controller.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
+
+<script>
+  //
+  // // Emit ready event.
+//    socket.emit('batman', prompt('What is your name?'))
+  //
+  // // Listen for get-feelings event.
+  // socket.on('get-feelings', function () {
+  //     socket.emit('send-feelings', prompt('How do you feel?'));
+  // })
+  //
+  // // Listen for session event.
+  // socket.on('session', function(data) {
+  //     message = 'Hey ' + data.name + '!\n\n'
+  //     message += 'Server says you feel '+ data.feelings + '\n'
+  //     message += 'I know these things because sessions work!\n\n'
+  //     message += 'Also, you joined ' + data.loginDate + '\n'
+  //     alert(message)
+  // })
+</script>
 </body>
 </html>

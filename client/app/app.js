@@ -5,7 +5,9 @@ angular.module('wohangonaminuteApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'btford.socket-io',
+  'youtube-embed'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider

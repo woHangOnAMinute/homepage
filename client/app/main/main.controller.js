@@ -13,7 +13,8 @@ angular.module('wohangonaminuteApp')
 
     $scope.$on('youtube.player.ended', function ($event, player) {
       // play it again
-        $scope.getNextFromPlaylist();
+      $scope.currentVid = $scope.getNextFromPlaylist();
+      console.log($scope.currentVid);
       player.playVideo();
     });
 
@@ -36,7 +37,11 @@ angular.module('wohangonaminuteApp')
 
     $scope.playVideo = function(player) {
           console.log('I TRYING');
-          $scope.currentVid = $scope.getNextFromPlaylist();
+
+          $scope.$apply(function () {
+            $scope.currentVid = $scope.getNextFromPlaylist();
+          });
+          console.log($scope.currentVid);
     };
 
     $scope.addToPlaylist = function(id) {
@@ -63,9 +68,7 @@ angular.module('wohangonaminuteApp')
     };
 
     $scope.getNextFromPlaylist = function() {
-      var returnId = $scope.playlist[0].videoId;
-      $scope.playlist.splice(0,1);
-      return returnId;
+        return $scope.playlist.shift().videoId;
     };
 
     //$scope.addToPlaylist('R4ZHpYTd3hQ');

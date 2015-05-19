@@ -22,20 +22,16 @@ require('./config/express')(app);
 var io = require('socket.io')(server);
 
 
+var cat = [{userid:'1',videoId:123}];
 io.on('connection', function(socket){
   console.log('a user connected');
+  socket.emit('setPlaylist', cat);
   socket.on('updatePlaylist', function(data){
-    io.emit('updatePlaylist', data);
+    cat.push(data);
+    io.emit('updatePlaylist', cat);
   });
 
 });
-//
-//         io.on('batman', function (socket) {
-//         console.log(data);
-// // socket.broadcast.emit('updatePlaylist', { id: data.newId });
-// io.sockets.emit('updatePlaylist', { id: data.newId });
-//
-//     });
 
 // Start server
 server.listen(config.port, config.ip, function () {
